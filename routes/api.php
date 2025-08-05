@@ -7,24 +7,30 @@ use Illuminate\Support\Facades\Route;
 
 
 
+Route::post('/me',[AuthApiController::class,'me'])->name('auth.me')->middleware('auth:sanctum') ;
+Route::post('/logout',[AuthApiController::class,'logout'])->name('auth.logout')->middleware('auth:sanctum') ;
 
-Route::post('/auth',[AuthApiController::class,'auth'])->name('auth');
+Route::post('/auth',[AuthApiController::class,'auth'])->name('auth.login');
+
+
+Route::middleware('auth:sanctum')->group(function () {
+    // Protected routes can be added here
+
+    // Permission routes
+    Route::apiResource('/permissions', PermissionController::class);
+
+    // User routes
+    Route::delete('/users/{user}', [UserController::class, 'destroy'])->name('users.destroy');
+    Route::put('/users/{user}', [UserController::class, 'update'])->name('users.update');
+    Route::get('/users/{user}', [UserController::class, 'show'])->name('users.show');
+    Route::post('/users', [UserController::class, 'store'])->name('users.store');
+    Route::get('/users', [UserController::class, 'index'])->name('users.index');
+
+});
+
 
 Route::get('/', fn() => response()->json(['message' => 'Welcome to the API']));
 
-
-
-
-Route::apiResource('/permissions', PermissionController::class);
-
-
-
-
-Route::delete('/users/{user}', [UserController::class, 'destroy'])->name('users.destroy');
-Route::put('/users/{user}', [UserController::class, 'update'])->name('users.update');
-Route::get('/users/{user}', [UserController::class, 'show'])->name('users.show');
-Route::post('/users', [UserController::class, 'store'])->name('users.store');
-Route::get('/users', [UserController::class, 'index'])->name('users.index');
 
 /*
 Route::get('/user', function (Request $request) {
