@@ -33,6 +33,6 @@ class User extends Authenticatable implements Auditable
 
     public function permissions()
     {
-        return $this->belongsToMany(Permission::class);
+        return $this->belongsToMany(Permission::class, 'permissions_user');
     }
 }

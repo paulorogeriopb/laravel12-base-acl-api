@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Api\Auth\AuthApiController;
 use App\Http\Controllers\Api\PermissionController;
+use App\Http\Controllers\Api\PermissionUserController;
 use App\Http\Controllers\Api\UserController;
 use Illuminate\Support\Facades\Route;
 
@@ -15,6 +16,7 @@ Route::post('/auth',[AuthApiController::class,'auth'])->name('auth.login');
 
 Route::middleware('auth:sanctum')->group(function () {
     // Protected routes can be added here
+    Route::post('/users/{user}/permissions-sync', [PermissionUserController::class, 'syncPermissionsOfUser'])->name('users.permissions-sync');
 
     // Permission routes
     Route::apiResource('/permissions', PermissionController::class);
