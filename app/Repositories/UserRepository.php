@@ -24,7 +24,9 @@ class UserRepository
                 $query->where('name', 'LIKE', "%{$filter}%")
                       ->orWhere('email', 'LIKE', "%{$filter}%");
             }
-        })->paginate($totalPerPage,['*'],'page',$page);
+        })
+        ->with(['permissions'])
+        ->paginate($totalPerPage,['*'],'page',$page);
     }
 
 
@@ -89,6 +91,11 @@ class UserRepository
         return true;
 
     }
+
+    public function getPermissionsByUserId(string $user)
+       {
+        return $this->findById($user)->permissions()->get();
+       }
 
 
 }
