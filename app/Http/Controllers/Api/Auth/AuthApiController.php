@@ -10,6 +10,7 @@ use Illuminate\Validation\ValidationException;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Resources\UserResource;
 
+
 class AuthApiController extends Controller
 {
      public function __construct(private UserRepository $userRepository)
@@ -40,13 +41,14 @@ class AuthApiController extends Controller
         // Retorna os dados do usuário autenticado
         $user = Auth::user();
         return new UserResource($user);
-       // return response()->json(['user' => Auth::user()]);
+        //return response()->json(['user' => Auth::user()]);
     }
 
 
-    public function logout()
-    {
-        Auth::user()->tokens()->delete();
-        return response()->json(['message' => 'Logged out']);
-    }
+    public function logout(Request $request)
+{
+    $request->user()->currentAccessToken()->delete();
+
+    return response()->json(['message' => 'Logged out']);
+}
 }
