@@ -1,0 +1,18 @@
+[90m= [39m[34;4mApp\Models\Audit[39;24m {#6326
+    [34mid[39m: [35m1[39m,
+    [34muser_type[39m: [36mnull[39m,
+    [34muser_id[39m: [36mnull[39m,
+    [34mevent[39m: "[32mcreated[39m",
+    [34mauditable_type[39m: "[32mApp\Models\User[39m",
+    [34mauditable_id[39m: "[32m01987d59-a2b3-7117-989e-9fa5a9c047bd[39m",
+    [34mold_values[39m: "[32m[][39m",
+    [34mnew_values[39m: "[32m{"name":"Paulo","email":"paulorogeriojp5@gmail.com","password":"$2y$12$\/XTh4.rhxwlPibKLpy6Nr.lypshrwGSZOadS\/vbeRqzleHc32cJgS","id":"01987d59-a2b3-7117-989e-9fa5a9c047bd"}[39m",
+    [34murl[39m: "[32mhttp://192.168.100.198:8787/users[39m",
+    [34mip_address[39m: "[32m192.168.100.198[39m",
+    [34mgeo[39m: [36mnull[39m,
+    [34muser_agent[39m: "[32minsomnia/10.3.1[39m",
+    [34mtags[39m: [36mnull[39m,
+    [34mcreated_at[39m: "[32m2025-08-06 00:08:03[39m",
+    [34mupdated_at[39m: "[32m2025-08-06 00:08:03[39m",
+  }
+
