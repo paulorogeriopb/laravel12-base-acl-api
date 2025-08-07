@@ -6,9 +6,6 @@ use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
 {
-    /**
-     * Run the migrations.
-     */
     public function up(): void
     {
         Schema::create('permissions', function (Blueprint $table) {
@@ -18,25 +15,22 @@ return new class extends Migration
             $table->timestamps();
         });
 
-
-        Schema::create('permissions_user', function (Blueprint $table) {
-            $table->uuid('permission_id'); // Correção aqui
+        Schema::create('permission_user', function (Blueprint $table) {
+            $table->uuid('permission_id');
             $table->uuid('user_id');
             $table->primary(['permission_id', 'user_id']);
+
             $table->foreign('permission_id')->references('id')->on('permissions')->onDelete('cascade');
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
-            $table->timestamps();
-    });
 
+            $table->timestamps();
+            $table->index(['user_id', 'permission_id']);
+        });
     }
 
-    /**
-     * Reverse the migrations.
-     */
     public function down(): void
     {
-        Schema::dropIfExists('permissions_user');
+        Schema::dropIfExists('permission_user');
         Schema::dropIfExists('permissions');
-
     }
 };

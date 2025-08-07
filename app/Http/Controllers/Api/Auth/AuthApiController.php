@@ -40,6 +40,7 @@ class AuthApiController extends Controller
     {
         // Retorna os dados do usuário autenticado
         $user = Auth::user();
+        $user->load('permissions');
         return new UserResource($user);
         //return response()->json(['user' => Auth::user()]);
     }

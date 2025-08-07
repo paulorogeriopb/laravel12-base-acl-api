@@ -31,8 +31,14 @@ class User extends Authenticatable implements Auditable
         'password' => 'hashed',
     ];
 
-    public function permissions()
+   public function permissions()
     {
-        return $this->belongsToMany(Permission::class, 'permissions_user');
+        return $this->belongsToMany(Permission::class);
+    }
+
+
+    public function isSuperAdmin(): bool
+    {
+        return in_array($this->email, config('acl.super_admins'));
     }
 }

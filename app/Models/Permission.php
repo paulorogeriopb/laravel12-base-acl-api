@@ -14,7 +14,7 @@ class Permission extends Model implements Auditable
 {
     use HasFactory, HasUuids, AuditingTrait;
 
-    protected $table = 'permissions';
+
 
     protected  $fillable = [
         'name',
@@ -22,8 +22,8 @@ class Permission extends Model implements Auditable
     ];
 
 
-    public function users(): BelongsToMany
-    {
-        return $this->belongsToMany(User::class, 'permissions_user');
-    }
+   public function users()
+{
+    return $this->belongsToMany(User::class);
+}
 }

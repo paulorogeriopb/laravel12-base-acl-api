@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Http\Resources\UserResource;
+use App\Http\Resources\PermissionResource;
 use App\Models\Permission;
 use App\Repositories\UserRepository;
 
@@ -35,7 +35,7 @@ class PermissionUserController extends Controller
         }
 
         $permissions = $this->userRepository->getPermissionsByUserId($id);
-          return  Permission::collection($permissions);
+          return PermissionResource::collection($permissions);
     }
 
 
